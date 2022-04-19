@@ -15,7 +15,20 @@ class CityController extends Controller
      */
     public function index()
     {
-        return new CityCollection(City::all());
+         
+         $cities = City::OrderBy('name', 'asc')->get();
+         if (! $cities->isEmpty()){
+            return new CityCollection($cities);
+         }
+         
+         else{
+             return response()->json([
+                'status' => 'error',
+                
+            ]);
+         }
+        // return new CityCollection(City::all());
+        
     }
 
    

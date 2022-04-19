@@ -7,6 +7,16 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class CityCollection extends ResourceCollection
 {
     /**
+     * The "data" wrapper that should be applied.
+     * It returns json for all collection elements (cities), also addition info is returned
+     * @var string
+     */
+    public static $wrap = 'data'; // First json keynode for API response
+
+
+    public $preserveKeys = true;
+
+    /**
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -14,6 +24,13 @@ class CityCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+//         return parent::toArray($request);
+        $output = [
+            'status'         =>'ok',   
+            'data'           => $this->collection,            
+        ];
+
+        return $output;
+
     }
 }
