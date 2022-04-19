@@ -11,4 +11,10 @@ class City extends Model
 
     protected $table ='cities';
 
+    // Not need autoincrement values
+    public $incrementing = false;
+
+    
+    
+
 }
