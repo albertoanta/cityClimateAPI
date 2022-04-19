@@ -14,7 +14,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::get();
     }
 
    
@@ -27,7 +27,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        $cities = City::get();
+        
     }
 
    
