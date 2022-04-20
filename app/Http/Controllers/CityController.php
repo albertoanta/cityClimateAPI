@@ -85,7 +85,7 @@ class CityController extends Controller
                     $maxTemp = $currentMax;                         
             }           
         }        
-        return ['TemperatureMax' => $maxTemp, 'TemperatureMin' => $minTemp];
+        return ['TemperatureMax' => $maxTemp, 'TemperatureMin' => $minTemp, 'forecastDays'=> $numberOfDays];
         
 
     }
