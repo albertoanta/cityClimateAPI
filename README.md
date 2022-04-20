@@ -41,7 +41,7 @@ This is a code test for  **Eltiempo.es**
     DB_PASSWORD={passwd usuario}
 
 
-8. Run `composer install`
+8. Run `composer update`
 9. Run `php artisan key:generate`
 
 10. Default laravel Migration execute command
@@ -52,7 +52,7 @@ This is a code test for  **Eltiempo.es**
 11. Execute Seeder for Cities Table
     cityClimateAPI$ `php artisan db:seed --class=CreateCitiesSeeder`
 12. Execute php server on localhost port:8000
-    `php artisan" serve --host='localhost' --port='8000'`
+    `php artisan serve --host='localhost' --port='8000'`
 
   
 13. Open the app in the browser at port 8000 http://localhost:8000
