@@ -1,64 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Guide to install the test app
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a code test for  **Eltiempo.es**
 
-## About Laravel
+1. Download the repository
+2. Rename the folder (Optional)
+3. Enter the folder from the terminal `cd directory/of/the/folder`
+4. Copy the contents of the `.env.example` file to a new file called `.env`
+    * If you are on Liunx or Mac you can run the command: `cp .env.example .env`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+5. Case SqlLite driver used for Database 
+    `mkdir /tmp/database/`
+    `touch /tmp/database/database.sqlite`
+    
+    Edit .env file to use created database
+    
+    See more datail at cityClimateAPI/.env.example
+    DB_CONNECTION=sqlite
+    DB_DATABASE=/tmp/database/database.sqlite
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+6. Case MySQL driver used for Database 
+    Database creation MySQL (Case SQlLite not created)
+   
+    MySQL CLI authentication , can use any GUI db management tool such as "dbeaver"
+    `sudo mysql -u root `
 
-## Learning Laravel
+    MYSQL CLI database creation
+    mysql> create database eltiempoESexercise;
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    at this pipoint MySQL database eltiempoESexcercise is created and now Laravel can perform CRUD ops on it.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    Edit .env file to use created database
+    See more datail at cityClimateAPI/.env
 
-## Laravel Sponsors
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=eltiempoESexercise
+    DB_USERNAME={usuario con permisos escritura acceso a la bbdd}
+    DB_PASSWORD={passwd usuario}
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+8. Run `composer install`
+9. Run `php artisan key:generate`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+10. Default laravel Migration execute command
+    cityClimateAPI$ `php artisan migrate`
 
-## Contributing
+    See more detail at database/migrations/2022_04_19_111013_create_cities_table.php
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+11. Execute Seeder for Cities Table
+    cityClimateAPI$ `php artisan db:seed --class=CreateCitiesSeeder`
+12. Execute php server on localhost port:8000
+    `php artisan" serve --host='localhost' --port='8000'`
 
-## Code of Conduct
+  
+13. Open the app in the browser at port 8000 http://localhost:8000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# URL Examples for postman or web browser api requests
 
-## Security Vulnerabilities
+http://localhost:8000/api/cities?orderby=id&token=my-secret-token
+http://localhost:8000/api/cities?orderby=name&token=my-secret-token
+http://localhost:8000/api/cities&token=my-secret-token
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+http://localhost:8000/api/cities/ESCT0001/forecast/?token=my-secret-token 
+Devuelve forecast para 5 días
 
-## License
+http://localhost:8000/api/cities/ESCT0001/forecast/3?token=my-secret-token
+Devuelve forecast para 3 días 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# System requirements
+*  mysql Server or sqllite driver
+# PHP Modules requirements
+   * php-curl
+   * php-pdo
+   * mysql or sqldriver module for php
+   * composer 
+    
+   
+   
