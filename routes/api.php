@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('cities', [CityController::class, 'index'])->name('api.cities.index');
+Route::get('cities/{city}/forecast/{days?}', [CityController::class, 'forecastByCity'])->name('api.city.forecast');

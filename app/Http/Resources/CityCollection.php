@@ -26,8 +26,8 @@ class CityCollection extends ResourceCollection
     {
 //         return parent::toArray($request);
         $output = [
-            'status'         =>'ok',   
-            'data'           => $this->collection,            
+            config('api.API_RESULT_STATUS') => config('api.VALUE_API_RESULT_OK'),   
+            'data'                          => $this->collection,            
         ];
 
         return $output;
