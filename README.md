@@ -8,9 +8,11 @@ This is a code test for  **Eltiempo.es**
 4. Copy the contents of the `.env.example` file to a new file called `.env`
     * If you are on Liunx or Mac you can run the command: `cp .env.example .env`
 
-5. Case SqlLite driver used for Database 
+5. Case SqLite driver used for Database 
     `mkdir /tmp/database/`
     `touch /tmp/database/database.sqlite`
+
+    There is and populated SQLite database at`cityClimateAPI/storage/app/databases/database.sqlite` path
     
     Edit .env file to use created database
     
@@ -64,11 +66,15 @@ http://localhost:8000/api/cities?orderby=name&token=my-secret-token
 http://localhost:8000/api/cities&token=my-secret-token
 
 http://localhost:8000/api/cities/ESCT0001/forecast/?token=my-secret-token 
-Devuelve forecast para 5 días
+Returns 5 days forecast (defualt)
 
 http://localhost:8000/api/cities/ESCT0001/forecast/3?token=my-secret-token
-Devuelve forecast para 3 días 
+Returns 3 days forecast
 
+
+# Testing
+Execute ´/cityClimateAPI$ ./vendor/bin/phpunit´
+See  tests/Feature/CitiesTest.php
 
 
 # System requirements
